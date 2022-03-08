@@ -1,0 +1,99 @@
+# Automação com Python
+#Passo1 entrar no sitema da empresa
+
+import pyautogui
+import pyperclip
+import time
+import pandas as pd
+
+pyautogui.PAUSE = 1
+
+pyautogui.hotkey("ctrl","t")
+pyperclip.copy("https://drive.google.com/drive/folders/149xknr9JvrlEnhNWO49zPcw0PW5icxga")
+pyautogui.hotkey("ctrl", "v")
+pyautogui.press("enter")
+
+time.sleep(5)
+# Passo 2 Navegar pelo sistema e encontrar a base de dados
+pyautogui.click(x=486, y=427, clicks=2)
+time.sleep(3)
+
+# Passo 3 Exporta a base de dados
+pyautogui.click(x=539, y=434)
+pyautogui.click(x=1613, y=281)
+time.sleep(5)
+pyautogui.click(x=1447, y=833)
+
+time.sleep(10)
+# Passo 4 Calcular os indicadores
+import pandas as pd
+tabela = pd.read_excel(r"C:\Users\spawn\Downloads\Vendas - Dez.xlsx")
+display(tabela)    
+#se for necessário abrir outras abas ,sheets=1 (numero da aba)
+
+faturamento = tabela["Valor Final"].sum()
+quantidade = tabela["Quantidade"].sum()
+Código Venda	Data	ID Loja	Produto	Quantidade	Valor Unitário	Valor Final
+0	65014	2019-12-01	Shopping Morumbi	Sunga Listrado	5	114	570
+1	65014	2019-12-01	Shopping Morumbi	Casaco Listrado	1	269	269
+2	65016	2019-12-01	Iguatemi Campinas	Sapato Listrado	2	363	726
+3	65016	2019-12-01	Iguatemi Campinas	Casaco	1	250	250
+4	65017	2019-12-01	Shopping SP Market	Gorro Liso	3	92	276
+...	...	...	...	...	...	...	...
+7084	69996	2019-12-26	Center Shopping Uberlândia	Short Listrado	2	102	204
+7085	69996	2019-12-26	Center Shopping Uberlândia	Mochila	4	270	1080
+7086	69996	2019-12-26	Center Shopping Uberlândia	Pulseira Estampa	1	87	87
+7087	69997	2019-12-26	Ribeirão Shopping	Camisa Listrado	1	108	108
+7088	69997	2019-12-26	Ribeirão Shopping	Short Linho	2	133	266
+7089 rows × 7 columns
+
+# Passo 5 Enviar um Em-mail para empresa
+import pyautogui
+import pyperclip
+import time
+import pandas as pd
+
+pyautogui.PAUSE = 1
+
+pyautogui.hotkey("ctrl","t")
+pyperclip.copy("https://mail.google.com/mail/u/0/#inbox")
+
+time.sleep(5)
+
+pyautogui.hotkey("ctrl", "v")
+pyautogui.press("enter")
+
+time.sleep(5)
+
+pyautogui.click(x=59, y=302)
+
+time.sleep(3)
+
+pyautogui.write("spawn2442@hotmail.com") #destinatário 1
+pyautogui.press("tab")
+pyautogui.write("naty_oliver@hotmail.com") #destinatário 2
+pyautogui.press("tab")
+pyautogui.press("tab")
+pyperclip.copy("Teste de Automação em Python pela Hasteam Python") #Assunto do E-mail
+pyautogui.hotkey("ctrl","v")
+pyautogui.press("tab")
+
+texto = f'''E-mail de teste do curso de Python ^.^ 
+O faturamento foi de : R$ {faturamento:,.2f} 
+e a Quantidade vendida foi {quantidade:}
+
+Atenciosamente Luciano Lima Jr.
+
+'''
+pyperclip.copy(texto)
+pyautogui.hotkey("ctrl","v")
+
+time.sleep(2)
+
+pyautogui.hotkey("ctrl","enter")
+#Como descobrir possição do mause
+import time
+time.sleep(5)
+pyautogui.position()
+Point(x=433, y=953)
+ 
